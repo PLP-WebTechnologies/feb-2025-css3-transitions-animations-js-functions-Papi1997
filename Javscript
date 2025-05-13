@@ -1,0 +1,27 @@
+// Check if the user preference exists in localStorage
+let isAnimationEnabled = localStorage.getItem("animationEnabled") === "true";
+
+// Apply the animation based on the user's preference
+const button = document.querySelector("button");
+
+if (isAnimationEnabled) {
+  button.classList.add("animate");
+} else {
+  button.classList.remove("animate");
+}
+
+// Toggle animation on button click
+button.addEventListener("click", () => {
+  // Toggle the animation state
+  isAnimationEnabled = !isAnimationEnabled;
+  
+  // Store the new preference in localStorage
+  localStorage.setItem("animationEnabled", isAnimationEnabled);
+  
+  // Apply or remove the animation class based on the updated preference
+  if (isAnimationEnabled) {
+    button.classList.add("animate");
+  } else {
+    button.classList.remove("animate");
+  }
+});
