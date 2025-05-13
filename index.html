@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tonny Onwonga CSS Animations with JavaScript and My LocalStorage</title>
+  <style>
+    /* Button Style */
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    /* Animation on hover */
+    @keyframes animateButton {
+      0% { background-color: #3498db; }
+      50% { background-color: #2ecc71; }
+      100% { background-color: #3498db; }
+    }
+
+    button.animate {
+      animation: animateButton 1s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body>
+  <button>Click to Toggle Animation</button>
+
+  <script>
+    // Checking if the user preference exists in localStorage
+    let isAnimationEnabled = localStorage.getItem("animationEnabled") === "true";
+
+    // Applying the animation based on the user's preference
+    const button = document.querySelector("button");
+
+    if (isAnimationEnabled) {
+      button.classList.add("animate");
+    } else {
+      button.classList.remove("animate");
+    }
+
+    // Toggle animation on button click
+    button.addEventListener("click", () => {
+      // Toggle the animation state
+      isAnimationEnabled = !isAnimationEnabled;
+      
+      // Store the new preference in localStorage
+      localStorage.setItem("animationEnabled", isAnimationEnabled);
+      
+      // Apply or remove the animation class based on the updated preference
+      if (isAnimationEnabled) {
+        button.classList.add("animate");
+      } else {
+        button.classList.remove("animate");
+      }
+    });
+  </script>
+</body>
+</html>
